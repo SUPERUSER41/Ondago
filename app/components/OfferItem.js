@@ -18,19 +18,21 @@ const OfferItem = ({
   return (
     <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
       <View style={styles.container}>
-        <Image style={styles.image} source={image} />
-        <View>
-          <AppText style={styles.name}>{name}</AppText>
-          <AppText style={styles.address}>{address}</AppText>
-          <View style={styles.distanceOnlineContainer}>
-            <Feather name="navigation" size={12} color={colors.secondary} />
-            <AppText style={styles.distance}>{distance}</AppText>
-            <View style={styles.onlineContainer}>
-              <AppText style={styles.online}>{type}</AppText>
+        <View style={styles.row}>
+          <Image style={styles.image} source={image} />
+          <View>
+            <AppText style={styles.name}>{name}</AppText>
+            <AppText style={styles.address}>{address}</AppText>
+            <View style={styles.distanceOnlineContainer}>
+              <Feather name="navigation" size={12} color={colors.secondary} />
+              <AppText style={styles.distance}>{distance}</AppText>
+              <View style={styles.onlineContainer}>
+                <AppText style={styles.online}>{type}</AppText>
+              </View>
             </View>
           </View>
         </View>
-        <View style={styles.discountInfo}>
+        <View style={styles.row}>
           <View style={styles.discountContainer}>
             <AppText style={styles.discount}>{discount}%</AppText>
             <AppText style={styles.rewards}>Rewards</AppText>
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
   image: {
     width: 62,
     height: 62,
+    marginRight: 15,
   },
 
   name: {
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     justifyContent: 'center',
   },
-  discountInfo: {
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
