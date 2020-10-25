@@ -30,16 +30,18 @@ const OfferItem = ({
             </View>
           </View>
         </View>
-        <View style={styles.discountContainer}>
-          <AppText style={styles.discount}>{discount}%</AppText>
-          <AppText style={styles.rewards}>Rewards</AppText>
+        <View style={styles.discountInfo}>
+          <View style={styles.discountContainer}>
+            <AppText style={styles.discount}>{discount}%</AppText>
+            <AppText style={styles.rewards}>Rewards</AppText>
+          </View>
+          <Ionicons
+            style={styles.info}
+            name="ios-information-circle-outline"
+            size={24}
+            color={colors.secondary}
+          />
         </View>
-        <Ionicons
-          style={styles.info}
-          name="ios-information-circle-outline"
-          size={24}
-          color={colors.secondary}
-        />
       </View>
     </TouchableHighlight>
   );
@@ -93,6 +95,10 @@ const styles = StyleSheet.create({
     paddingVertical: 11,
     marginLeft: 20,
     justifyContent: 'center',
+  },
+  discountInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   discount: {
     color: colors.white,
