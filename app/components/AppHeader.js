@@ -10,12 +10,12 @@ import AppSearch from './AppSearch';
 const AppHeader = () => {
   return (
     <View style={styles.container}>
-      <Header
+      {/* <Header
         containerStyle={styles.header}
         leftComponent={{ icon: 'close', color: colors.white }}
         centerComponent={<AppLogo />}
         rightComponent={<RewardPoints />}
-      />
+      /> */}
       <AppSearch />
     </View>
   );
