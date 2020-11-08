@@ -7,10 +7,11 @@ import colors from '../config/colors';
 import AppLogo from '../components/AppLogo';
 import MainScreen from '../screens/MainScreen';
 import RewardPoints from '../components/RewardPoints';
+import PayScreen from '../screens/PayScreen';
 
 const Stack = createStackNavigator();
 
-const ondagoScreenOptions = {
+const homeScreenOptions = {
   headerStyle: {
     backgroundColor: colors.primary,
     shadowRadius: 0,
@@ -28,9 +29,41 @@ const ondagoScreenOptions = {
   headerRight: () => <RewardPoints />,
 };
 
+const applyOfferScreenOptions = {
+  headerBackTitle: 'Home',
+  headerStyle: {
+    backgroundColor: colors.primary,
+    shadowRadius: 0,
+    shadowOffset: {
+      height: 0,
+    },
+  },
+  headerTintColor: colors.white,
+  headerLeftContainerStyle: { marginLeft: 10 },
+  headerTitle: <RewardPoints />,
+  headerRightContainerStyle: { marginRight: 10 },
+  headerRight: () => (
+    <Ionicons
+      onPress={() => infoSheetRef.current.snapTo(0)}
+      name="ios-information-circle-outline"
+      size={24}
+      color={colors.white}
+    />
+  ),
+};
+
 const AppNavigator = () => (
-  <Stack.Navigator screenOptions={ondagoScreenOptions}>
-    <Stack.Screen name="Ondago" component={MainScreen} />
+  <Stack.Navigator>
+    <Stack.Screen
+      options={homeScreenOptions}
+      name="Main"
+      component={MainScreen}
+    />
+    <Stack.Screen
+      options={applyOfferScreenOptions}
+      name="ApplyOffer"
+      component={PayScreen}
+    />
   </Stack.Navigator>
 );
 

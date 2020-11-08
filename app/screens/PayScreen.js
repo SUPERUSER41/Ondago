@@ -5,24 +5,22 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
 } from 'react-native';
 
 import colors from '../config/colors';
-import AppText from './AppText';
+import AppText from '../components/AppText';
 import { TextInputMask } from 'react-native-masked-text';
 
-const ApplyOffer = ({ onPress, image }) => {
+const PayScreen = () => {
   const [amount, setAmount] = useState();
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={image} />
+      <Image style={styles.image} source={require('../assets/company.png')} />
       <AppText style={styles.name}>AMC</AppText>
-
       <TextInputMask
         style={styles.input}
+        placeholder="$5.00+"
         options={{
           precision: 2,
           separator: '.',
@@ -34,7 +32,6 @@ const ApplyOffer = ({ onPress, image }) => {
         value={amount}
         onChangeText={(text) => setAmount(text)}
       />
-
       <View style={styles.details}>
         <AppText>
           <AppText style={styles.pay}>You pay USD $00.00</AppText> from your
@@ -43,7 +40,11 @@ const ApplyOffer = ({ onPress, image }) => {
       </View>
       <TouchableOpacity>
         <View style={styles.button}>
-          <Button color={colors.white} onPress={onPress} title="Pay now" />
+          <Button
+            color={colors.white}
+            onPress={() => console.log('paynow')}
+            title="Pay now"
+          />
         </View>
       </TouchableOpacity>
     </View>
@@ -52,8 +53,10 @@ const ApplyOffer = ({ onPress, image }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 24,
+    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   image: {
     height: 129,
@@ -84,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ApplyOffer;
+export default PayScreen;

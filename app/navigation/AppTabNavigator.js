@@ -4,7 +4,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import OfferScreen from '../screens/OfferScreen';
 
 import colors from '../config/colors';
-import OfferNavigator from './OfferNavigator';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -20,7 +19,7 @@ const AppTabNavigator = () => (
       },
     }}
   >
-    <Tab.Screen name="Nearby" component={OfferNavigator} />
+    <Tab.Screen name="Nearby" component={OfferScreen} />
     <Tab.Screen name="Online" component={OfferScreen} />
   </Tab.Navigator>
 );
