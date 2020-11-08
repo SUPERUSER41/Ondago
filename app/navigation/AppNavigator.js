@@ -29,7 +29,7 @@ const homeScreenOptions = {
   headerRight: () => <RewardPoints />,
 };
 
-const applyOfferScreenOptions = {
+const payScreenOptions = {
   headerBackTitle: 'Home',
   headerStyle: {
     backgroundColor: colors.primary,
@@ -40,7 +40,7 @@ const applyOfferScreenOptions = {
   },
   headerTintColor: colors.white,
   headerLeftContainerStyle: { marginLeft: 10 },
-  headerTitle: <RewardPoints />,
+  headerTitle: <RewardPoints isPayScreen={true} />,
   headerRightContainerStyle: { marginRight: 10 },
   headerRight: () => (
     <Ionicons
@@ -60,7 +60,7 @@ const AppNavigator = () => (
       component={MainScreen}
     />
     <Stack.Screen
-      options={applyOfferScreenOptions}
+      options={payScreenOptions}
       name="ApplyOffer"
       component={PayScreen}
     />

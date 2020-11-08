@@ -3,13 +3,14 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import colors from '../config/colors';
 
-const RewardPoints = ({ points = '1,379' }) => {
+const RewardPoints = ({ points = '1,379', isPayScreen = false }) => {
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
         <View style={styles.outerCircle}>
           <View style={styles.innerCircle} />
         </View>
+        {isPayScreen && <Text style={styles.text}>Tap to apply rewards </Text>}
         <Text style={styles.text}>{points}</Text>
       </View>
     </View>
@@ -19,7 +20,6 @@ const RewardPoints = ({ points = '1,379' }) => {
 const styles = StyleSheet.create({
   container: {
     height: 36,
-
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: '500',
   },
+
   outerCircle: {
     width: 16,
     height: 16,
