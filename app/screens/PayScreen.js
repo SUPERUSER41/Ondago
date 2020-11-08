@@ -5,6 +5,10 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
+  Keyboard,
 } from 'react-native';
 
 import colors from '../config/colors';
@@ -15,46 +19,58 @@ const PayScreen = () => {
   const [amount, setAmount] = useState();
 
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={require('../assets/company.png')} />
-      <AppText style={styles.name}>AMC</AppText>
-      <TextInputMask
-        style={styles.input}
-        placeholder="$5.00+"
-        options={{
-          precision: 2,
-          separator: '.',
-          delimiter: ',',
-          unit: '$',
-          suffixUnit: '',
-        }}
-        type="money"
-        value={amount}
-        onChangeText={(text) => setAmount(text)}
-      />
-      <View style={styles.details}>
-        <AppText>
-          <AppText style={styles.pay}>You pay USD $00.00</AppText> from your
-        </AppText>
-        <AppText>available balance USD $576.02</AppText>
-      </View>
-      <TouchableOpacity>
-        <View style={styles.button}>
-          <Button
-            color={colors.white}
-            onPress={() => console.log('paynow')}
-            title="Pay now"
+    <KeyboardAvoidingView
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <Image
+            style={styles.image}
+            source={require('../assets/company.png')}
           />
+          <AppText style={styles.name}>AMC</AppText>
+          <TextInputMask
+            style={styles.input}
+            placeholder="$5.00+"
+            maxLength={10}
+            options={{
+              precision: 2,
+              separator: '.',
+              delimiter: ',',
+              unit: '$',
+              suffixUnit: '',
+            }}
+            type="money"
+            value={amount}
+            onChangeText={(text) => setAmount(text)}
+          />
+          <View style={styles.details}>
+            <AppText>
+              <AppText style={styles.pay}>
+                You pay USD {!amount ? '$0.00' : amount}
+              </AppText>{' '}
+              from your
+            </AppText>
+            <AppText>available balance USD $576.02</AppText>
+          </View>
+          <TouchableOpacity>
+            <View style={styles.button}>
+              <Button
+                color={colors.white}
+                onPress={() => console.log('paynow')}
+                title="Pay now"
+              />
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
-    </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 24,
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
