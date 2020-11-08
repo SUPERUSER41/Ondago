@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Button,
   Image,
+  Text,
   View,
   StyleSheet,
   TouchableOpacity,
@@ -53,13 +54,26 @@ const PayScreen = () => {
             </AppText>
             <AppText>available balance USD $576.02</AppText>
           </View>
-          <TouchableOpacity>
-            <View style={styles.button}>
-              <Button
-                color={colors.white}
-                onPress={() => console.log('paynow')}
-                title="Pay now"
-              />
+          <TouchableOpacity
+            disabled={!amount || amount === '$0.00'}
+            onPress={() => console.log('pay amount:', amount)}
+          >
+            <View
+              style={
+                !amount || amount === '$0.00'
+                  ? styles.disabledButton
+                  : styles.activeButton
+              }
+            >
+              <Text
+                style={
+                  !amount || amount === '$0.00'
+                    ? styles.disabledButtonText
+                    : styles.activeButtonText
+                }
+              >
+                Pay Now
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -72,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 24,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
   image: {
     height: 129,
@@ -95,11 +109,27 @@ const styles = StyleSheet.create({
   details: {
     marginVertical: 30,
   },
-  button: {
+  activeButton: {
     backgroundColor: colors.primary,
     paddingVertical: 20,
     paddingHorizontal: 150,
     borderRadius: 50,
+  },
+  disabledButton: {
+    backgroundColor: colors.disabled,
+    paddingVertical: 20,
+    paddingHorizontal: 150,
+    borderRadius: 50,
+  },
+  activeButtonText: {
+    color: colors.white,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  disabledButtonText: {
+    color: colors.secondary,
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
 
