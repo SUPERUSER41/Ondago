@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -6,46 +6,66 @@ import { Ionicons } from '@expo/vector-icons';
 import AppText from './AppText';
 import colors from '../config/colors';
 
+import AppBottomSheet from './AppBottomSheet';
+
 const OfferItem = ({
-  name,
+  brand,
   image,
-  address,
-  distance,
-  discount,
-  type,
+  address = '1000 Piedmont Avenue',
+  distance = '0.5 mi',
+  discount = 2,
+  type = 'online',
   onPress,
 }) => {
+  const SheetContent = () => (
+    <View
+      style={{
+        backgroundColor: 'red',
+        padding: 16,
+        height: 450,
+      }}
+    >
+      <AppText>Swipe down to close</AppText>
+    </View>
+  );
+  const infoSheetRef = useRef(null);
   return (
-    <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
-      <View style={styles.container}>
-        <View style={styles.row}>
-          <Image style={styles.image} source={image} />
-          <View>
-            <AppText style={styles.name}>{name}</AppText>
-            <AppText style={styles.address}>{address}</AppText>
-            <View style={styles.distanceOnlineContainer}>
-              <Feather name="navigation" size={12} color={colors.secondary} />
-              <AppText style={styles.distance}>{distance}</AppText>
-              <View style={styles.onlineContainer}>
-                <AppText style={styles.online}>{type}</AppText>
+    <>
+      <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
+        <View style={styles.container}>
+          <View style={styles.row}>
+            <Image style={styles.image} source={image} />
+            <View>
+              <View style={{ flexDirection: 'row', width: 200 }}>
+                <AppText style={styles.brand}>{brand}</AppText>
+              </View>
+              <AppText style={styles.address}>{address}</AppText>
+              <View style={styles.distanceOnlineContainer}>
+                <Feather name="navigation" size={12} color={colors.secondary} />
+                <AppText style={styles.distance}>{distance}</AppText>
+                <View style={styles.onlineContainer}>
+                  <AppText style={styles.online}>{type}</AppText>
+                </View>
               </View>
             </View>
           </View>
-        </View>
-        <View style={styles.row}>
-          <View style={styles.discountContainer}>
-            <AppText style={styles.discount}>{discount}%</AppText>
-            <AppText style={styles.rewards}>Rewards</AppText>
+          <View style={styles.row}>
+            <View style={styles.discountContainer}>
+              <AppText style={styles.discount}>{discount}%</AppText>
+              <AppText style={styles.rewards}>Rewards</AppText>
+            </View>
+            <Ionicons
+              onPress={() => infoSheetRef.current.snapTo(0)}
+              style={styles.info}
+              name="ios-information-circle-outline"
+              size={24}
+              color={colors.secondary}
+            />
           </View>
-          <Ionicons
-            style={styles.info}
-            name="ios-information-circle-outline"
-            size={24}
-            color={colors.secondary}
-          />
         </View>
-      </View>
-    </TouchableHighlight>
+      </TouchableHighlight>
+      {/* <AppBottomSheet sheetRef={infoSheetRef} Content={SheetContent} /> */}
+    </>
   );
 };
 
@@ -62,10 +82,11 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
 
-  name: {
+  brand: {
     color: colors.primary,
     fontWeight: 'bold',
     lineHeight: 20,
+    flexShrink: 1,
   },
   address: {
     color: colors.secondary,
