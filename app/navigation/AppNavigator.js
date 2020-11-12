@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
-import colors from '../config/colors';
-
 import AppLogo from '../components/AppLogo';
 import MainScreen from '../screens/MainScreen';
-import RewardPoints from '../components/RewardPoints';
+import OfferInfo from '../components/OfferInfo';
 import PayScreen from '../screens/PayScreen';
+import RewardPoints from '../components/RewardPoints';
+
+import colors from '../config/colors';
 
 const Stack = createStackNavigator();
 
@@ -42,29 +43,25 @@ const payScreenOptions = {
   headerLeftContainerStyle: { marginLeft: 10 },
   headerTitle: <RewardPoints isPayScreen={true} />,
   headerRightContainerStyle: { marginRight: 10 },
-  headerRight: () => (
-    <Ionicons
-      onPress={() => infoSheetRef.current.snapTo(0)}
-      name="ios-information-circle-outline"
-      size={24}
-      color={colors.white}
-    />
-  ),
 };
 
-const AppNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      options={homeScreenOptions}
-      name="Main"
-      component={MainScreen}
-    />
-    <Stack.Screen
-      options={payScreenOptions}
-      name="ApplyOffer"
-      component={PayScreen}
-    />
-  </Stack.Navigator>
-);
+//TODO: Write a function to handle on press for info
+
+const AppNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        options={homeScreenOptions}
+        name="Main"
+        component={MainScreen}
+      />
+      <Stack.Screen
+        options={payScreenOptions}
+        name="Pay"
+        component={PayScreen}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export default AppNavigator;

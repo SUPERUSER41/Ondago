@@ -64,7 +64,6 @@ const OfferItem = ({
           </View>
         </View>
       </TouchableHighlight>
-      {/* <AppBottomSheet sheetRef={infoSheetRef} Content={SheetContent} /> */}
     </>
   );
 };

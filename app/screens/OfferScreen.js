@@ -68,10 +68,7 @@ const OfferScreen = ({ navigation }) => {
         data={offers}
         keyExtractor={(offer) => offer.id.toString()}
         renderItem={({ item }) => (
-          <OfferItem
-            onPress={() => navigation.navigate('ApplyOffer')}
-            {...item}
-          />
+          <OfferItem onPress={() => navigation.navigate('Pay')} {...item} />
         )}
         ItemSeparatorComponent={OfferItemSeparator}
         refreshing={isRefreshing}
