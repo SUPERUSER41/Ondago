@@ -56,7 +56,7 @@ const OfferScreen = ({ navigation }) => {
   const fetchGiftCards = async () => {
     try {
       const response = await giftCardsApi.getGiftCards();
-      // setOffers(response);
+      setOffers(response);
     } catch (error) {
       console.log(error);
     }

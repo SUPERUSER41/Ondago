@@ -9,7 +9,6 @@ import PayScreen from '../screens/PayScreen';
 import RewardPoints from '../components/RewardPoints';
 
 import colors from '../config/colors';
-import PinScreen from '../screens/PinScreen';
 
 const Stack = createStackNavigator();
 
@@ -54,7 +53,7 @@ const AppNavigator = () => {
       <Stack.Screen
         options={homeScreenOptions}
         name="Main"
-        component={PinScreen}
+        component={MainScreen}
       />
       <Stack.Screen
         options={payScreenOptions}
