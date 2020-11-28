@@ -1,6 +1,8 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 
-import { View, Image, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import Clipboard from '@react-native-community/clipboard';
+
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -36,6 +38,11 @@ const GiftCardScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const copyToClipboard = () => {
+    console.log('hello');
+    alert('Copied to clipboard');
+  };
+
   return (
     <Screen>
       <View style={styles.container}>
@@ -53,7 +60,7 @@ const GiftCardScreen = ({ navigation }) => {
             <AppText style={styles.giftCardCode}>
               6000-1484-0000-8651-902
             </AppText>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={copyToClipboard}>
               <MaterialIcons name="content-copy" size={24} color="black" />
             </TouchableOpacity>
           </View>
@@ -77,7 +84,7 @@ const GiftCardScreen = ({ navigation }) => {
             <AppText>Identifier #</AppText>
             <View style={styles.indentifierNumContainer}>
               <AppText style={styles.indentifierNum}>72JS2U8</AppText>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={copyToClipboard}>
                 <MaterialIcons name="content-copy" size={24} color="black" />
               </TouchableOpacity>
             </View>
