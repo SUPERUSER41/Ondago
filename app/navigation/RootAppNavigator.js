@@ -6,6 +6,7 @@ import {
 
 import AppNavigator from './AppNavigator';
 import OfferInfoScreen from '../screens/OfferInfoScreen';
+import PinScreen from '../screens/PinScreen';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const RootAppNavigator = () => {
     >
       <Stack.Screen name="App" component={AppNavigator} />
       <Stack.Screen name="OfferInfo" component={OfferInfoScreen} />
+      <Stack.Screen name="Pin" component={PinScreen} />
     </Stack.Navigator>
   );
 };

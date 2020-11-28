@@ -71,7 +71,7 @@ const PayScreen = ({ navigation }) => {
           </View>
           <TouchableOpacity
             disabled={!amount || amount === '$0.00'}
-            onPress={() => console.log('pay amount:', amount)}
+            onPress={() => navigation.navigate('Pin')}
           >
             <View
               style={
