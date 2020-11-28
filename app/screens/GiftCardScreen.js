@@ -40,6 +40,7 @@ const GiftCardScreen = ({ navigation }) => {
 
   const copyToClipboard = () => {
     console.log('hello');
+    //TODO: implement copy function
     alert('Copied to clipboard');
   };
 
