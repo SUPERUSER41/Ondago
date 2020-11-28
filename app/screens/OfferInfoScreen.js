@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import colors from '../config/colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const OfferInfoScreen = () => {
+const OfferInfoScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View>
@@ -16,6 +16,7 @@ const OfferInfoScreen = () => {
         />
         <AntDesign
           name="closecircle"
+          onPress={() => navigation.goBack()}
           size={24}
           color="white"
           style={styles.closeIcon}

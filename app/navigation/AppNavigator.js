@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
 import AppLogo from '../components/AppLogo';
 import MainScreen from '../screens/MainScreen';
-import OfferInfo from '../components/OfferInfo';
 import PayScreen from '../screens/PayScreen';
 import RewardPoints from '../components/RewardPoints';
 
@@ -12,7 +11,7 @@ import colors from '../config/colors';
 
 const Stack = createStackNavigator();
 
-const homeScreenOptions = {
+const mainScreenOptions = {
   headerStyle: {
     backgroundColor: colors.primary,
     shadowRadius: 0,
@@ -45,13 +44,11 @@ const payScreenOptions = {
   headerRightContainerStyle: { marginRight: 10 },
 };
 
-//TODO: Write a function to handle on press for info
-
 const AppNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        options={homeScreenOptions}
+        options={mainScreenOptions}
         name="Main"
         component={MainScreen}
       />

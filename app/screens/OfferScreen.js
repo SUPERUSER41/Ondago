@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 import giftCardsApi from '../api/giftcards';
 import OfferItem from '../components/OfferItem';
 import Screen from '../components/Screen';
@@ -68,7 +68,11 @@ const OfferScreen = ({ navigation }) => {
         data={offers}
         keyExtractor={(offer) => offer.id.toString()}
         renderItem={({ item }) => (
-          <OfferItem onPress={() => navigation.navigate('Pay')} {...item} />
+          <OfferItem
+            onPress={() => navigation.navigate('Pay')}
+            onPressOfferInfo={() => navigation.navigate('OfferInfo')}
+            {...item}
+          />
         )}
         ItemSeparatorComponent={OfferItemSeparator}
         refreshing={isRefreshing}
@@ -89,7 +93,5 @@ const OfferScreen = ({ navigation }) => {
     </Screen>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default OfferScreen;
