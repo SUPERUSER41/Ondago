@@ -8,6 +8,7 @@ import PayScreen from '../screens/PayScreen';
 import RewardPoints from '../components/RewardPoints';
 
 import colors from '../config/colors';
+import GiftCardScreen from '../screens/GiftCardScreen';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,7 @@ const AppNavigator = () => {
         name="Pay"
         component={PayScreen}
       />
+      <Stack.Screen name="GiftCard" component={GiftCardScreen} />
     </Stack.Navigator>
   );
 };
