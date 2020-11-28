@@ -44,6 +44,10 @@ const payScreenOptions = {
   headerTitle: <RewardPoints isPayScreen={true} />,
   headerRightContainerStyle: { marginRight: 10 },
 };
+const giftCardScreenOptions = {
+  headerLeftContainerStyle: { marginLeft: 10 },
+  headerRightContainerStyle: { marginRight: 10 },
+};
 
 const AppNavigator = () => {
   return (
@@ -58,7 +62,11 @@ const AppNavigator = () => {
         name="Pay"
         component={PayScreen}
       />
-      <Stack.Screen name="GiftCard" component={GiftCardScreen} />
+      <Stack.Screen
+        options={giftCardScreenOptions}
+        name="GiftCard"
+        component={GiftCardScreen}
+      />
     </Stack.Navigator>
   );
 };
