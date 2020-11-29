@@ -8,6 +8,7 @@ import PayScreen from '../screens/PayScreen';
 import RewardPoints from '../components/RewardPoints';
 
 import colors from '../config/colors';
+import GiftCardScreen from '../screens/GiftCardScreen';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,10 @@ const payScreenOptions = {
   headerTitle: <RewardPoints isPayScreen={true} />,
   headerRightContainerStyle: { marginRight: 10 },
 };
+const giftCardScreenOptions = {
+  headerLeftContainerStyle: { marginLeft: 10 },
+  headerRightContainerStyle: { marginRight: 10 },
+};
 
 const AppNavigator = () => {
   return (
@@ -56,6 +61,11 @@ const AppNavigator = () => {
         options={payScreenOptions}
         name="Pay"
         component={PayScreen}
+      />
+      <Stack.Screen
+        options={giftCardScreenOptions}
+        name="GiftCard"
+        component={GiftCardScreen}
       />
     </Stack.Navigator>
   );

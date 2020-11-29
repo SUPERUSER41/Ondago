@@ -6,12 +6,14 @@ import {
   View,
   Platform,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Keyboard,
 } from 'react-native';
 import AppText from '../components/AppText';
 import { Foundation } from '@expo/vector-icons';
 import colors from '../config/colors';
 import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const PinScreen = ({ navigation }) => {
   const [pin, setPin] = useState('');
@@ -46,6 +48,14 @@ const PinScreen = ({ navigation }) => {
             />
             <AppText style={styles.forgetPassword}>Forgot your PIN?</AppText>
           </View>
+          <TouchableOpacity onPress={() => navigation.navigate('GiftCard')}>
+            <MaterialIcons
+              style={{ marginTop: 20 }}
+              name="fingerprint"
+              size={62}
+              color="black"
+            />
+          </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
