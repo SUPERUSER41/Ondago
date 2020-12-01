@@ -1,0 +1,1 @@
+export const FETCH_GIFT_CARDS = 'FETCH_GIFT_CARDS';
