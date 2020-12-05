@@ -16,6 +16,7 @@
     "apisauce": "2.0.0",
     "crypto-js": "4.0.0",
     "cryptojs": "2.5.3",
+    "easy-peasy": "4.0.1",
     "expo": "~39.0.2",
     "expo-constants": "9.2.0",
     "expo-crypto": "8.3.0",

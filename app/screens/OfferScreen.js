@@ -1,65 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList } from 'react-native';
-import giftCardsApi from '../api/giftcards';
 import OfferItem from '../components/OfferItem';
 import Screen from '../components/Screen';
 import OfferItemSeparator from '../components/OfferItemSeparator';
-
-const initialOffers = [
-  {
-    id: 1,
-    brand: 'AMC',
-    image: require('../assets/company.png'),
-    address: '1000 Piedmont Avenue',
-    distance: '0.5 mi',
-    discount: '2',
-    type: 'online',
-  },
-  {
-    id: 2,
-    brand: 'AMC',
-    image: require('../assets/company.png'),
-    address: '1000 Piedmont Avenue',
-    distance: '0.5 mi',
-    discount: '2',
-    type: 'online',
-  },
-  {
-    id: 3,
-    brand: 'AMC',
-    image: require('../assets/company.png'),
-    address: '1000 Piedmont Avenue',
-    distance: '0.5 mi',
-    discount: '2',
-    type: 'online',
-  },
-  {
-    id: 4,
-    brand: 'AMC',
-    image: require('../assets/company.png'),
-    address: '1000 Piedmont Avenue',
-    distance: '0.5 mi',
-    discount: '2',
-    type: 'online',
-  },
-];
+import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const OfferScreen = ({ navigation }) => {
-  const [offers, setOffers] = useState(initialOffers);
+  const offers = useStoreState((state) => state.giftCards);
+  const fetchGiftCards = useStoreActions((actions) => actions.fetchGiftCards);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const setGiftCard = useStoreActions((actions) => actions.setGiftCard);
 
   useEffect(() => {
-    // fetchGiftCards();
-    //TODO: add cleanup function
+    fetchGiftCards();
   }, []);
 
-  const fetchGiftCards = async () => {
-    try {
-      const response = await giftCardsApi.getGiftCards();
-      setOffers(response);
-    } catch (error) {
-      console.log(error);
-    }
+  const navigateToPayScreen = (item) => {
+    setGiftCard(item);
+    navigation.navigate('Pay');
   };
 
   return (
@@ -69,7 +27,7 @@ const OfferScreen = ({ navigation }) => {
         keyExtractor={(offer) => offer.id.toString()}
         renderItem={({ item }) => (
           <OfferItem
-            onPress={() => navigation.navigate('Pay')}
+            onPress={() => navigateToPayScreen(item)}
             onPressOfferInfo={() => navigation.navigate('OfferInfo')}
             {...item}
           />

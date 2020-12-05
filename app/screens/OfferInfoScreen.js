@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text } from 'react-native';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 import AppText from '../components/AppText';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -7,6 +8,8 @@ import colors from '../config/colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const OfferInfoScreen = ({ navigation }) => {
+  const giftCard = useStoreState((state) => state.giftCard);
+
   return (
     <View style={styles.container}>
       <View>
@@ -22,16 +25,13 @@ const OfferInfoScreen = ({ navigation }) => {
           style={styles.closeIcon}
         />
         <View style={styles.brandImageContainer}>
-          <Image
-            style={styles.brandImage}
-            source={require('../assets/company.png')}
-          />
+          <Image style={styles.brandImage} source={{ uri: giftCard.image }} />
         </View>
       </View>
 
       <View style={styles.inner}>
         <View style={styles.brandInfo}>
-          <AppText style={styles.brandName}>AMC</AppText>
+          <AppText style={styles.brandName}>{giftCard.brand}</AppText>
           <AppText style={styles.address}>1000 Piedmont Avenue</AppText>
           <View style={styles.distanceOnlineContainer}>
             <Feather name="navigation" size={12} color={colors.secondary} />
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     height: 120,
     width: 120,
     resizeMode: 'cover',
+    borderRadius: 129 / 2,
   },
   brandName: {
     color: colors.primary,

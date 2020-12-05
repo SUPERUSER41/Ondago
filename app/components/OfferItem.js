@@ -20,7 +20,7 @@ const OfferItem = ({
     <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.row}>
-          <Image style={styles.image} source={image} />
+          <Image style={styles.image} source={{ uri: image }} />
           <View>
             <View style={{ flexDirection: 'row', width: 200 }}>
               <AppText style={styles.brand}>{brand}</AppText>

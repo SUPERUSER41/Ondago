@@ -10,7 +10,7 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
-
+import { useStoreState, useStoreActions } from 'easy-peasy';
 import { TextInputMask } from 'react-native-masked-text';
 
 import AppText from '../components/AppText';
@@ -20,6 +20,7 @@ import colors from '../config/colors';
 
 const PayScreen = ({ navigation }) => {
   const [amount, setAmount] = useState();
+  const giftCard = useStoreState((state) => state.giftCard);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -40,11 +41,8 @@ const PayScreen = ({ navigation }) => {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
-          <Image
-            style={styles.image}
-            source={require('../assets/company.png')}
-          />
-          <AppText style={styles.name}>AMC</AppText>
+          <Image style={styles.image} source={{ uri: giftCard.image }} />
+          <AppText style={styles.name}>{giftCard.brand}</AppText>
           <TextInputMask
             style={styles.input}
             placeholder="$5.00+"
@@ -106,6 +104,10 @@ const styles = StyleSheet.create({
   image: {
     height: 129,
     width: 129,
+    borderRadius: 129 / 2,
+    resizeMode: 'cover',
+
+    backgroundColor: colors.primary,
   },
   name: {
     color: colors.primary,
