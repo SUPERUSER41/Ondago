@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/clipboard": "1.5.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/material-top-tabs": "5.3.0",
     "@react-navigation/native": "5.8.0",
@@ -15,10 +16,12 @@
     "apisauce": "2.0.0",
     "crypto-js": "4.0.0",
     "cryptojs": "2.5.3",
+    "easy-peasy": "4.0.1",
     "expo": "~39.0.2",
     "expo-constants": "9.2.0",
     "expo-crypto": "8.3.0",
     "expo-status-bar": "~1.0.2",
+    "lottie-react-native": "~2.6.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
