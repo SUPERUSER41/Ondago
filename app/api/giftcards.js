@@ -20,51 +20,52 @@ let timestamp = date.getTime();
 const postRegisterHash = secret + deviceId + installId + timestamp + endpoint;
 
 const createHash = async (digestString) => {
-  const digestAlgorithm = Crypto.CryptoDigestAlgorithm.SHA256;
-  let digest;
-  try {
-    digest = await Crypto.digestStringAsync(digestAlgorithm, digestString);
-  } catch (error) {
-    console.log(error);
-  }
+	const digestAlgorithm = Crypto.CryptoDigestAlgorithm.SHA256;
+	let digest;
+	try {
+		digest = await Crypto.digestStringAsync(digestAlgorithm, digestString);
+	} catch (error) {
+		console.log(error);
+	}
 
-  return digest;
+	return digest;
 };
 
 const getGiftCards = async () => {
-  const hash = await createHash(postRegisterHash);
+	const hash = await createHash(postRegisterHash);
 
-  try {
-    const sionicHeaders = {
-      'application-identifier': applicationId,
-      'client-version': '5.3.01',
-      'client-platform': clientPlatform,
-      latitude: '33.640837',
-      longitude: '-84.445668',
-      timestamp,
-      'access-token': accessToken,
-      hash,
-      timezone: 'America/New_York',
-    };
-    const { data: fetchedData } = await client.get(endpoint, null, {
-      headers: sionicHeaders,
-    });
-    const giftCardList = fetchedData['gift-card-list'].map((item) => {
-      return {
-        id: item['giftcard-id'],
-        brand: item.brand,
-        image: item['image-url'],
-        ...item,
-      };
-    });
+	try {
+		const sionicHeaders = {
+			'application-identifier': applicationId,
+			'client-version': '5.3.01',
+			'client-platform': clientPlatform,
+			latitude: '33.640837',
+			longitude: '-84.445668',
+			timestamp,
+			'access-token': accessToken,
+			hash,
+			timezone: 'America/New_York',
+		};
+		const { data: fetchedData } = await client.get(endpoint, null, {
+			headers: sionicHeaders,
+		});
+		const giftCardList = fetchedData['gift-card-list'].map((item) => {
+			return {
+				id: item['giftcard-id'],
+				brand: item.brand,
+				image: item['image-url'],
+				discount: Math.round(item['rewards-base-rate'] * 100),
+				...item,
+			};
+		});
 
-    //TODO: handle return status
-    return giftCardList;
-  } catch (error) {
-    console.log(error);
-  }
+		//TODO: handle return status
+		return giftCardList;
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export default {
-  getGiftCards,
+	getGiftCards,
 };
