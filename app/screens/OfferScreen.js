@@ -10,7 +10,7 @@ import AppActivityIndicator from '../components/AppActivityIndicator';
 const OfferScreen = ({ navigation }) => {
 	const offers = useStoreState((state) => state.giftCards);
 	const fetchGiftCards = useStoreActions((actions) => actions.fetchGiftCards);
-	const [isRefreshing, setIsRefreshing] = useState(false);
+
 	const [isLoading, setIsLoading] = useState(false);
 	const setGiftCard = useStoreActions((actions) => actions.setGiftCard);
 
@@ -43,20 +43,6 @@ const OfferScreen = ({ navigation }) => {
 					/>
 				)}
 				ItemSeparatorComponent={OfferItemSeparator}
-				refreshing={isRefreshing}
-				onRefresh={() => {
-					setOffers([
-						{
-							id: 4,
-							brand: 'AMC',
-							image: require('../assets/company.png'),
-							address: '1000 Piedmont Avenue',
-							distance: '0.5 mi',
-							discount: '2',
-							type: 'online',
-						},
-					]);
-				}}
 			/>
 		</Screen>
 	);
