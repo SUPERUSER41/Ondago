@@ -9,6 +9,7 @@ import RewardPoints from '../components/RewardPoints';
 
 import colors from '../config/colors';
 import GiftCardScreen from '../screens/GiftCardScreen';
+import GiftCardTermsScreen from '../screens/GiftCardTermsScreen';
 
 const Stack = createStackNavigator();
 
@@ -70,6 +71,30 @@ const AppNavigator = () => {
 				options={giftCardScreenOptions}
 				name="GiftCard"
 				component={GiftCardScreen}
+			/>
+			<Stack.Screen
+				options={{
+					headerShown: false,
+					cardStyle: { backgroundColor: 'transparent' },
+					cardOverlayEnabled: true,
+					cardStyleInterpolator: ({ current: { progress } }) => ({
+						cardStyle: {
+							opacity: progress.interpolate({
+								inputRange: [0, 0.5, 0.9, 1],
+								outputRange: [0, 0.25, 0.7, 1],
+							}),
+						},
+						overlayStyle: {
+							opacity: progress.interpolate({
+								inputRange: [0, 1],
+								outputRange: [0, 0.5],
+								extrapolate: 'clamp',
+							}),
+						},
+					}),
+				}}
+				name="GiftCardTerms"
+				component={GiftCardTermsScreen}
 			/>
 		</Stack.Navigator>
 	);

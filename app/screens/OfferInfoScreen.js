@@ -8,12 +8,14 @@ import {
 	Linking,
 	Alert,
 } from 'react-native';
-import { useStoreState, useStoreActions } from 'easy-peasy';
+import { useStoreState } from 'easy-peasy';
 import AppText from '../components/AppText';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import colors from '../config/colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import { Pressable } from 'react-native';
 
 const BUTTONTEXTS = {
 	website: 'Website  ',
@@ -139,7 +141,11 @@ const OfferInfoScreen = ({ navigation }) => {
 						</View>
 					</TouchableOpacity>
 				</View>
-				<AppText style={styles.terms}>eGift Card Terms and Conditions</AppText>
+				<Pressable onPress={() => navigation.navigate('GiftCardTerms')}>
+					<AppText style={styles.terms}>
+						eGift Card Terms and Conditions
+					</AppText>
+				</Pressable>
 			</View>
 		</View>
 	);
@@ -148,6 +154,7 @@ const OfferInfoScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: colors.white,
+		flex: 1,
 	},
 	closeIcon: { position: 'absolute', top: 12, left: 20 },
 	button: {
