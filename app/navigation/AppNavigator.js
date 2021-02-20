@@ -41,6 +41,10 @@ const payScreenOptions = {
 	},
 	headerTintColor: colors.white,
 	headerLeftContainerStyle: { marginLeft: 10 },
+	headerTitleContainerStyle: {
+		alignSelf: 'center',
+		alignItems: 'center',
+	},
 	headerTitle: <RewardPoints isPayScreen={true} />,
 	headerRightContainerStyle: { marginRight: 10 },
 };
