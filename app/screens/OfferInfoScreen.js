@@ -40,6 +40,18 @@ const callNumber = (phone) => {
 		.catch((err) => console.log(err));
 };
 
+const openWebsite = (websiteURL) => {
+	Linking.canOpenURL(websiteURL)
+		.then((supported) => {
+			if (!supported) {
+				Alert.alert('Unable to open website.');
+			} else {
+				return Linking.openURL(websiteURL);
+			}
+		})
+		.catch((err) => console.log(err));
+};
+
 const OfferInfoScreen = ({ navigation }) => {
 	const giftCard = useStoreState((state) => state.giftCard);
 
@@ -115,7 +127,7 @@ const OfferInfoScreen = ({ navigation }) => {
 							<Text style={styles.buttonText}>{BUTTONTEXTS.directions}</Text>
 						</View>
 					</TouchableOpacity>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => openWebsite('https://google.com')}>
 						<View style={styles.button}>
 							<Feather
 								name="globe"
