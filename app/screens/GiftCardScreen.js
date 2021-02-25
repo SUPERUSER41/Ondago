@@ -54,31 +54,35 @@ const GiftCardScreen = ({ navigation }) => {
 				</View>
 				<FontAwesome5 name="barcode" size={100} color="black" />
 				<View style={styles.row}>
-					<AppText style={styles.giftCardCode}>6000-1484-0000-8651-902</AppText>
+					<AppText style={[styles.giftCardCode, styles.bold]}>
+						6000-1484-0000-8651-902
+					</AppText>
 					<TouchableOpacity onPress={copyToClipboard}>
 						<MaterialIcons name="content-copy" size={24} color="black" />
 					</TouchableOpacity>
 				</View>
 				<View style={styles.row}>
 					<AppText>PIN</AppText>
-					<AppText style={styles.semiBold}>Not Available</AppText>
+					<AppText style={styles.bold}>Not Available</AppText>
 				</View>
 				<View style={styles.row}>
 					<AppText>Wallet charged</AppText>
-					<AppText style={styles.semiBold}>USD $21.76</AppText>
+					<AppText style={styles.bold}>USD $21.76</AppText>
 				</View>
 				<View style={styles.row}>
 					<AppText>eGift Card value</AppText>
-					<AppText style={styles.semiBold}>USD $25</AppText>
+					<AppText style={styles.bold}>USD $25</AppText>
 				</View>
 				<View style={styles.row}>
 					<AppText>Ondago Rewards used</AppText>
-					<AppText style={styles.semiBold}>1,276</AppText>
+					<AppText style={styles.bold}>1,276</AppText>
 				</View>
 				<View style={styles.row}>
 					<AppText>Identifier #</AppText>
 					<View style={styles.indentifierNumContainer}>
-						<AppText style={styles.indentifierNum}>72JS2U8</AppText>
+						<AppText style={[styles.indentifierNum, styles.bold]}>
+							72JS2U8
+						</AppText>
 						<TouchableOpacity onPress={copyToClipboard}>
 							<MaterialIcons name="content-copy" size={24} color="black" />
 						</TouchableOpacity>
@@ -148,8 +152,8 @@ const styles = StyleSheet.create({
 		color: colors.primary,
 		fontWeight: 'bold',
 	},
-	semiBold: {
-		fontWeight: '600',
+	bold: {
+		fontWeight: 'bold',
 	},
 	row: {
 		alignItems: 'center',
