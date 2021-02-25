@@ -1,8 +1,9 @@
 import client from './client';
 import * as Crypto from 'expo-crypto';
-import helpers from '../config/helpers';
 
 const endpoint = '/gift-cards';
+const locationEndpoint =
+	'/locations?latitude=33.640837&longitude=-84.445668&include-giftcard-list=true';
 
 const secret = '744f118f4251483a9da353145b348618';
 const deviceId = '65a248ca-34f0-4665-a72c-de0a88493ef2';
@@ -66,6 +67,33 @@ const getGiftCards = async () => {
 	}
 };
 
+const getLocationsWithGiftCards = async () => {
+	const hash = await createHash(postRegisterHash);
+
+	try {
+		const sionicHeaders = {
+			'application-identifier': applicationId,
+			'client-version': '5.3.01',
+			'client-platform': clientPlatform,
+			latitude: '33.640837',
+			longitude: '-84.445668',
+			timestamp,
+			'access-token': accessToken,
+			hash,
+			timezone: 'America/New_York',
+		};
+		const { data: fetchedData } = await client.get(locationEndpoint, null, {
+			headers: sionicHeaders,
+		});
+		const locationsWithGiftCardsList = fetchedData;
+
+		return locationsWithGiftCardsList;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export default {
 	getGiftCards,
+	getLocationsWithGiftCards,
 };
