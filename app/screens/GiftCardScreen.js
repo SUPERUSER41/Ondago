@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-
+import { useStoreState } from 'easy-peasy';
 import { View, StyleSheet, Text } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 
@@ -13,6 +13,8 @@ import GiftCardBrandLogo from '../components/GiftCardBrandLogo';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const GiftCardScreen = ({ navigation }) => {
+	const giftCard = useStoreState((state) => state.giftCard);
+
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerLeft: () => (
@@ -23,9 +25,7 @@ const GiftCardScreen = ({ navigation }) => {
 					color={colors.black}
 				/>
 			),
-			headerTitle: () => (
-				<GiftCardBrandLogo image={require('../assets/company.png')} />
-			),
+			headerTitle: () => <GiftCardBrandLogo image={giftCard.image} />,
 			headerRight: () => (
 				<Ionicons
 					onPress={() => navigation.navigate('OfferInfo')}
