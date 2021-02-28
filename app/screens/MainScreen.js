@@ -1,43 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import AppHeader from '../components/AppHeader';
 import FAB from '../components/FAB';
 import AppTabNavigator from '../navigation/AppTabNavigator';
-
-const SCREENS = ['Marketplace', 'EGiftCards'];
-
-const TABS = {
-	nearby: 'Nearby ',
-	online: 'Online ',
-	available: 'Available ',
-	redeemed: 'Redeemed ',
-};
+import MyGiftCardsScreen from './MyGiftCardsScreen';
+import OfferScreen from './OfferScreen';
 
 const MainScreen = () => {
-	const [currentScreen, setCurrentScreen] = useState(SCREENS[0]);
+	const [tabs, setTabs] = useState([
+		{ name: 'Nearby ', component: OfferScreen },
+		{ name: 'Online ', component: View },
+	]);
+
+	const handleFABClick = () => {
+		setTabs([
+			{ name: 'Available ', component: MyGiftCardsScreen },
+			{ name: 'Redeemed ', component: MyGiftCardsScreen },
+		]);
+	};
 
 	return (
 		<View style={styles.container}>
 			<AppHeader />
-			{currentScreen === SCREENS[0] && (
-				<AppTabNavigator tab1Name={TABS.nearby} tab2Name={TABS.online} />
-			)}
-			{currentScreen === SCREENS[1] && (
-				<AppTabNavigator tab1Name={TABS.available} tab2Name={TABS.redeemed} />
-			)}
+			<AppTabNavigator tabs={tabs} />
 			<View style={styles.buttonContainer}>
 				<FAB
-					onPress={() => setCurrentScreen(SCREENS[0])}
+					onPress={handleFABClick}
 					iconName="store"
 					title="Marketplace"
-					isActive={currentScreen === SCREENS[0]}
+					isActive={true}
 				/>
 				<FAB
-					onPress={() => setCurrentScreen(SCREENS[1])}
+					onPress={handleFABClick}
 					iconName="card-giftcard"
 					title="My eGift Cards"
-					isActive={currentScreen === SCREENS[1]}
+					isActive={false}
 				/>
 			</View>
 		</View>

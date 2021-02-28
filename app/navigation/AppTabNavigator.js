@@ -1,13 +1,10 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-
-import OfferScreen from '../screens/OfferScreen';
-
 import colors from '../config/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
-const AppTabNavigator = ({ tab1Name, tab2Name }) => (
+const AppTabNavigator = ({ tabs }) => (
 	<Tab.Navigator
 		tabBarOptions={{
 			activeTintColor: colors.primary,
@@ -19,8 +16,9 @@ const AppTabNavigator = ({ tab1Name, tab2Name }) => (
 			},
 		}}
 	>
-		<Tab.Screen name={tab1Name} component={OfferScreen} />
-		<Tab.Screen name={tab2Name} component={OfferScreen} />
+		{tabs.map((tab, index) => (
+			<Tab.Screen key={index} name={tab.name} component={tab.component} />
+		))}
 	</Tab.Navigator>
 );
 export default AppTabNavigator;
