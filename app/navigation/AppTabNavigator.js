@@ -7,7 +7,7 @@ import colors from '../config/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
-const AppTabNavigator = () => (
+const AppTabNavigator = ({ tab1Name, tab2Name }) => (
 	<Tab.Navigator
 		tabBarOptions={{
 			activeTintColor: colors.primary,
@@ -19,8 +19,8 @@ const AppTabNavigator = () => (
 			},
 		}}
 	>
-		<Tab.Screen name="Nearby " component={OfferScreen} />
-		<Tab.Screen name="Online " component={OfferScreen} />
+		<Tab.Screen name={tab1Name} component={OfferScreen} />
+		<Tab.Screen name={tab2Name} component={OfferScreen} />
 	</Tab.Navigator>
 );
 export default AppTabNavigator;
