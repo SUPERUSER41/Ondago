@@ -9,8 +9,6 @@ export default {
 	//Thunks
 	fetchGiftCards: thunk(async (actions, payload) => {
 		const response = await giftCardsApi.getGiftCards();
-		const locations = await giftCardsApi.getLocationsWithGiftCards();
-		console.log(locations);
 		actions.setGiftCards(response);
 	}),
 
